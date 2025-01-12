@@ -1,0 +1,118 @@
+import java.util.*;
+class Student{
+    String name;
+    int rollnumber;
+    String grade;
+    public Student(String name,int rollnumber,String grade){
+        this.name=name;
+        this.grade=grade;
+        this.rollnumber=rollnumber;
+    }
+    public String getName(){
+        return name;
+    }
+    public void setName(String name){
+        this.name=name;
+    }
+    public int getRollnumber(){
+        return rollnumber;
+    }
+    public void setRollnumber(int rollnumber){
+        this.rollnumber=rollnumber;
+    }
+    public String getGrade(){
+        return grade;
+    }
+    public void setGrade(String grade){
+        this.grade=grade;
+    }
+    @Override
+    public String toString(){
+        return "Name: "+name+", Roll Number: "+rollnumber+", Grade: "+grade;
+    }
+}
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        List<Student> s=new ArrayList<>();
+        while(true){
+            System.out.println("\nStudent Management System");
+            System.out.println("1. Add student");
+            System.out.println("2. Remove student");
+            System.out.println("3. Edit student");
+            System.out.println("4. Display All students");
+            System.out.println("5. Exit");
+            System.out.print("Choose an option: ");
+            int choice=sc.nextInt();
+            sc.nextLine();
+            switch(choice){
+                case 1:
+                    System.out.print("Enter The Name: ");
+                    String name=sc.nextLine();
+                    System.out.print("Enter The Roll Number: ");
+                    int rollnumber=sc.nextInt();
+                    sc.nextLine();
+                    System.out.print("Enter The Grade: ");
+                    String grade=sc.nextLine();
+                    s.add(new Student(name,rollnumber,grade));
+                    System.out.println("Student added successfully!");
+                    break;
+                case 2:
+                    System.out.print("Enter The Roll Number To Remove: ");
+                    int rollToRemove=sc.nextInt();
+                    sc.nextLine();
+                    boolean removed=false;
+                    for(Student a:s){
+                        if(a.getRollnumber()==rollToRemove){
+                            s.remove(a);
+                            System.out.println("Student remove successfully!");
+                            removed=true;
+                            break;
+                        }
+                    }
+                    if(!removed){
+                        System.out.println("student with Roll Number "+rollToRemove+" not found.");
+                    }
+                    break;
+                case 3:
+                    System.out.print("Enter the rollnumber to edit ");
+                    int rollToEdit=sc.nextInt();
+                    sc.nextLine();
+                    boolean found=false;
+                    for(Student a:s){
+                        if(a.getRollnumber()==rollToEdit){
+                            System.out.print("Enter the new Name: ");
+                            a.setName(sc.nextLine());
+                            System.out.print("Enter the new Grade: ");
+                            a.setGrade(sc.nextLine());
+                            System.out.println("student details updated successfully!");
+                            found=true;
+                            break;
+                        }
+                    }
+                    if(!found){
+                        System.out.println("Student with Roll Number "+rollToEdit+" not found.");
+                    }
+                    break;
+                case 4:
+                    if(s.isEmpty()){
+                        System.out.println("No students to display.");
+                    }
+                    else{
+                        System.out.println("Student List: ");
+                        for(Student a:s){
+                            System.out.println(a);
+                        }
+                    }
+                    break;
+                case 5:
+                    System.out.println("Exiting...");
+                    sc.close();
+                    return;
+                default:
+                System.out.println("Invalid option.please try again.");
+                break;
+            }
+        }
+    }
+}
