@@ -1,0 +1,65 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("\nWelcome to Currency Converter!");
+            System.out.println("1. USD to INR");
+            System.out.println("2. INR to USD");
+            System.out.println("3. EURO to INR");
+            System.out.println("4. INR to EURO");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice (1 to 5): ");
+            int choice = scanner.nextInt();
+
+            if (choice == 1) {
+                System.out.print("Enter the amount in USD: ");
+                double USD = scanner.nextDouble();
+                double INR = usdToINR(USD);
+                System.out.println("Converted amount in INR: ₹" + INR);
+            } 
+            else if (choice == 2) {
+                System.out.print("Enter the amount in INR: ");
+                double INR = scanner.nextDouble();
+                double USD = INRToUsd(INR);
+                System.out.println("Converted amount in USD: $" + USD);
+            } 
+            else if (choice == 3) {
+                System.out.print("Enter the amount in EURO: ");
+                double EURO = scanner.nextDouble();
+                double INR = EUROToINR(EURO);
+                System.out.println("Converted amount in INR: ₹" + INR);
+            } 
+            else if (choice == 4) {
+                System.out.print("Enter the amount in INR: ");
+                double INR = scanner.nextDouble();
+                double EURO = INRToEuro(INR);
+                System.out.println("Converted amount in EURO: €" + EURO);
+            } 
+            else if (choice == 5) {
+                System.out.println("Thank you for using Currency Converter!");
+                break;
+            } 
+            else {
+                System.out.println("Invalid choice. Please select 1 to 5.");
+            }
+        }
+        scanner.close();
+    }
+
+    public static double usdToINR(double USD) {
+        return USD * 86.20; 
+    }
+
+    public static double INRToUsd(double INR) {
+        return INR * 0.012;
+    }
+
+    public static double EUROToINR(double EURO) {
+        return EURO * 88.28; 
+    }
+
+    public static double INRToEuro(double INR) {
+        return INR * 0.011;
+    }
+}
